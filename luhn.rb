@@ -8,12 +8,9 @@ class Luhn
     index = 0
     output = ''
     @luhn.to_s.reverse.each_char do |char|
-      if index % 2 == 0
-        output = output + char
-      else
-        value = char.to_i * 2 >= 10 ? "#{((char.to_i * 2) - 9)}" : "#{(char.to_i * 2)}"
-        output = output + value
-      end
+      char = char.to_i * 2 >= 10 ?
+      ((char.to_i * 2) - 9).to_s : (char.to_i * 2).to_s if index % 2 != 0
+      output = output + char
       index += 1
     end
     output.reverse.split("").map { |s| s.to_i }
@@ -28,11 +25,11 @@ class Luhn
   end
 
   def self.create(number)
-    i = 0
-    while i < 10 do
-      luhn = Luhn.new("#{number}#{i}")
-      return "#{number}#{i}".to_i if luhn.valid?
-      i += 1
+    check_digit = 0
+    while check_digit < 10 do
+      luhn = Luhn.new(number.to_s + check_digit.to_s)
+      return (number.to_s + check_digit.to_s).to_i if luhn.valid?
+      check_digit += 1
     end
   end
 end
