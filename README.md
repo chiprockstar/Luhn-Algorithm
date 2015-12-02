@@ -32,7 +32,7 @@ In the Luhn problem the final digit acts as a sanity check for all the prior dig
 It doesn't actually tell you if it's a real credit card number, only that it's a plausible one. It's the same thing with the bytes that get transmitted -- you could have the right number of bytes and still have a garbled message. So checksums are a simple sanity-check, not a real in-depth verification of the authenticity of some data. It's often a cheap first pass, and can be used to quickly discard obviously invalid things.
 
 Tests:
-
+``` ruby
 require 'minitest/autorun'
 require_relative 'luhn'
 
@@ -90,4 +90,5 @@ class LuhnTest < Minitest::Test
     assert_equal 8_372_637_564, number
   end
 end
+```
 
