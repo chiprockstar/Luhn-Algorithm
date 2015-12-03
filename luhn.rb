@@ -24,10 +24,10 @@ class Luhn
   end
 
   def self.create(number)
-    init_arg = "number.to_s + check_digit.to_s"
+    init_arg = ->(x) { number.to_s + x.to_s }
     0.upto(9) do |check_digit|
-      luhn = Luhn.new(eval(init_arg))
-      return (eval(init_arg)).to_i if luhn.valid?
+      luhn = Luhn.new(init_arg.call check_digit)
+      return (init_arg.call check_digit).to_i if luhn.valid?
     end
   end
 end
