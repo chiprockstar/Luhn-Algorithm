@@ -5,9 +5,9 @@ class Luhn
   end
 
   def addends
-    index = 0
-    output = ''
-    charx2 = "char.to_i * 2"
+    index = 0; output = ''; charx2 = "char.to_i * 2"
+
+
     @luhn.reverse.each_char do |char|
       char = eval(charx2) >= 10 ?
       ((eval(charx2)) - 9).to_s : (eval(charx2)).to_s if index.odd?
