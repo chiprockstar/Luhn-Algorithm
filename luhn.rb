@@ -10,7 +10,7 @@ class Luhn
     charx2 = "char.to_i * 2"
     @luhn.reverse.each_char do |char|
       char = eval(charx2) >= 10 ?
-      ((eval(charx2)) - 9).to_s : (eval(charx2)).to_s if index % 2 != 0
+      ((eval(charx2)) - 9).to_s : (eval(charx2)).to_s if index.odd?
       output = output + char
       index += 1
     end
