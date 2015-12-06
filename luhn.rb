@@ -13,11 +13,11 @@ class Luhn
       output << char
       index += 1
     end
-    output.reverse.split("").map { |s| s.to_i }
+    output.reverse.split("").map(&:to_i)
   end
 
   def checksum
-    checksum = addends.inject(0) { |x,n| x+n }
+    checksum = addends.inject(&:+)
   end
 
   def valid?
